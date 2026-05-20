@@ -1,13 +1,26 @@
-import logger from "./utils/logger.js";
-
 'use strict';
 
 import express from 'express';
+import routes from "./routes.js";
+import logger from "./utils/logger.js";
+import { create } from 'express-handlebars';
 
 const app = express();
 const port = 3000;
 
-app.get('/', (request, response) => response.send('Welcome to the Playlist app!'));
+app.use(express.static("public"));
 
-app.listen(port, () => logger.info(`Your app is listening on port ${port}!`));
+const handlebars = create({
+  extname: '.hbs',
+  layoutsDir: 'views/layouts',
+  partialsDir: 'views/layouts/partials',
+  defaultLayout: 'main',
+});
 
+app.engine(".hbs", handlebars.engine);
+app.set("view engine", ".hbs");
+app.set("views", "./views/layouts/partials");
+
+app.use("/", routes);
+
+app.listen(port, () => logger.info(`Your app is listening on port ${port}`));
