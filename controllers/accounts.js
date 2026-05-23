@@ -32,17 +32,16 @@ const accounts = {
     response.render('signup', viewData);
   },
 
-  // Exercise 2 - log the user in immediately after registering
   register(request, response) {
     const user = request.body;
     user.id = uuidv4();
-    userStore.addUser(user);
-    logger.info('registering ' + user.email);
-    response.cookie('playlist', user.email);
-    response.redirect('/start');
+    userStore.addUser(user, request.files.picture, function() {
+      logger.info('registering ' + user.email);
+      response.cookie('playlist', user.email);
+      response.redirect('/start');
+    });
   },
 
-  // Exercise 1 - check password as well as email
   authenticate(request, response) {
     const user = userStore.getUserByEmail(request.body.email);
     if (user && user.password === request.body.password) {
