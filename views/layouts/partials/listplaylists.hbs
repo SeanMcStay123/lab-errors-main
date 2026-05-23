@@ -9,7 +9,7 @@
   {{/unless}}
 
   {{#each playlists}}
-    <section class="ui left aligned middle aligned segment">
+    <section class="ui left aligned middle aligned segment playlist-item" data-song-count="{{songs.length}}">
 
       <h3 class="ui header">
         {{uppercase title}}
@@ -56,4 +56,9 @@
     </section>
   {{/each}}
 
+</section>
+
+<section class="ui left aligned middle aligned segment">
+  <h2>App Statistics</h2>
+  <div id="app-stats"></div>
 </section>
