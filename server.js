@@ -1,22 +1,24 @@
-'use strict';
+"use strict";
 
-import express from 'express';
+import express from "express";
 import logger from "./utils/logger.js";
-import routes from './routes.js'; 
-import { create } from 'express-handlebars';
+import routes from "./routes.js";
+import { create } from "express-handlebars";
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 
 const app = express();
 const port = 3000;
 
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extended: false, }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 const handlebars = create({
-  extname: '.hbs',
-  layoutsDir: 'views/layouts',
-  partialsDir: 'views/layouts/partials',
-  defaultLayout: 'main',
+  extname: ".hbs",
+  layoutsDir: "views/layouts",
+  partialsDir: "views/layouts/partials",
+  defaultLayout: "main",
   helpers: {
     uppercase: (inputString) => {
       return inputString.toUpperCase();

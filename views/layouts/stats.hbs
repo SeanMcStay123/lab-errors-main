@@ -4,12 +4,8 @@
 
   <h2>Playlist App Statistics</h2>
 
-  <h3 class="ui header">
-    App Statistics
-  </h3>
-  <p>
-    The playlist app now contains:
-  </p>
+  <h3 class="ui header">App Statistics</h3>
+  <p>The playlist app now contains:</p>
 
   {{#with stats}}
   <div class="ui center aligned grid">
@@ -18,30 +14,18 @@
       <div class="ui centered three statistics">
 
         <div class="ui statistic">
-          <div class="value">
-            <i class="microphone icon"></i>
-          </div>
-          <div class="label">
-            {{displayNumPlaylists}} playlists
-          </div>
+          <div class="value"><i class="microphone icon"></i></div>
+          <div class="label">{{displayNumPlaylists}} playlists</div>
         </div>
 
         <div class="ui red statistic">
-          <div class="value">
-            <i class="music icon"></i>
-          </div>
-          <div class="label">
-            {{displayNumSongs}} songs
-          </div>
+          <div class="value"><i class="music icon"></i></div>
+          <div class="label">{{displayNumSongs}} songs</div>
         </div>
 
         <div class="ui blue statistic">
-          <div class="value">
-            <i class="balance scale icon"></i>
-          </div>
-          <div class="label">
-            Average songs per <br> playlist: {{displayAverage}}
-          </div>
+          <div class="value"><i class="balance scale icon"></i></div>
+          <div class="label">Average songs per <br> playlist: {{displayAverage}}</div>
         </div>
 
       </div>
@@ -51,28 +35,20 @@
       <div class="ui centered two statistics">
 
         <div class="ui yellow statistic">
-          <div class="value">
-            <i class="star icon"></i>
-          </div>
+          <div class="value"><i class="star icon"></i></div>
           <div class="label">
             Highest Rated playlists: {{highest}} stars
             <table>
               {{#each displayFav}}
-              <tr>
-                <td>{{this}}</td>
-              </tr>
+              <tr><td>{{this}}</td></tr>
               {{/each}}
             </table>
           </div>
         </div>
 
         <div class="ui green statistic">
-          <div class="value">
-            <i class="dot circle outline icon"></i>
-          </div>
-          <div class="label">
-            Average Rating: {{displayAvgRating}}
-          </div>
+          <div class="value"><i class="dot circle outline icon"></i></div>
+          <div class="label">Average Rating: {{displayAvgRating}}</div>
         </div>
 
       </div>
@@ -82,28 +58,20 @@
       <div class="ui centered two statistics">
 
         <div class="ui teal statistic">
-          <div class="value">
-            <i class="music icon"></i>
-          </div>
+          <div class="value"><i class="music icon"></i></div>
           <div class="label">
-            Most songs in a playlist: {{mostSongs}}
+            Most songs in a playlist: {{longest}}
+            <table>
+              {{#each longestTitles}}
+              <tr><td>{{this}}</td></tr>
+              {{/each}}
+            </table>
           </div>
         </div>
 
         <div class="ui purple statistic">
-          <div class="value">
-            <i class="trophy icon"></i>
-          </div>
-          <div class="label">
-            Playlist(s) with most songs:
-            <table>
-              {{#each displayMostSongs}}
-              <tr>
-                <td>{{this}}</td>
-              </tr>
-              {{/each}}
-            </table>
-          </div>
+          <div class="value"><i class="users icon"></i></div>
+          <div class="label">{{numUsers}} registered users</div>
         </div>
 
       </div>

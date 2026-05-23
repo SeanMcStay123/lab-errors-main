@@ -2,17 +2,19 @@
 
 import logger from '../utils/logger.js';
 import playlistStore from '../models/playlist-store.js';
+import accounts from './accounts.js';
 import { v4 as uuidv4 } from 'uuid';
-
 
 const playlist = {
   createView(request, response) {
     const playlistId = request.params.id;
-    logger.debug(`Playlist id = ${playlistId}`);
-    
+    const loggedInUser = accounts.getCurrentUser(request);
+    logger.debug('Playlist id = ' + playlistId);
+
     const viewData = {
       title: 'Playlist',
-      singlePlaylist: playlistStore.getPlaylist(playlistId)
+      singlePlaylist: playlistStore.getPlaylist(playlistId),
+      fullname: loggedInUser.firstName + ' ' + loggedInUser.lastName,
     };
 
     response.render('playlist', viewData);
@@ -20,7 +22,6 @@ const playlist = {
 
   addSong(request, response) {
     const playlistId = request.params.id;
-    const playlist = playlistStore.getPlaylist(playlistId);
     const newSong = {
       id: uuidv4(),
       title: request.body.title,
@@ -29,7 +30,6 @@ const playlist = {
     playlistStore.addSong(playlistId, newSong);
     response.redirect('/playlist/' + playlistId);
   },
-
 };
 
 export default playlist;
