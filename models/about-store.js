@@ -5,7 +5,7 @@ import { readFileSync } from 'fs';
 const aboutStore = {
   getAppInfo() {
     const data = JSON.parse(readFileSync('./models/about-store.json', 'utf8'));
-    return data.employee;
+    return data.employees;
   },
 };
 
